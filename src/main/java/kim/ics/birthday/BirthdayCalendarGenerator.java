@@ -39,6 +39,7 @@ public class BirthdayCalendarGenerator {
                 "CALSCALE:GREGORIAN",
                 "X-APPLE-CALENDAR-COLOR:" + params.get("X-APPLE-CALENDAR-COLOR"),
                 "X-WR-CALNAME:" + params.get("X-WR-CALNAME"),
+                "X-APPLE-SPECIAL-DAY:BIRTHDAY",
                 "METHOD:PUBLISH",
                 buildEvents(yearFrom, yearTo),
                 "END:VCALENDAR"
@@ -71,7 +72,7 @@ public class BirthdayCalendarGenerator {
         eventItems.add("UID:" + UUID.randomUUID());
         eventItems.add("DTSTAMP:" + Instant.now().toString());
         eventItems.add("DTSTART;VALUE=DATE:" + birthDate.getBirthday(year));
-        String summary = "SUMMARY:%s\uD83C\uDF82%s";
+        String summary = "SUMMARY:%s%s生日";
         eventItems.add(summary.formatted(birthDate.getName(), birthDate.isSolar() ? "" : "(" + birthDate.getBirthDateType().getName() + ")"));
 
 
