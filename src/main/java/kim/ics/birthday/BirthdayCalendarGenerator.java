@@ -23,7 +23,7 @@ public class BirthdayCalendarGenerator {
         var params = Map.of(
                 "PRODID", "-//Kim ICS//Birthday Calendar//EN",
                 "X-APPLE-CALENDAR-COLOR", "#FFB6C1",
-                "X-WR-CALNAME", "Birthday Calendar"
+                "X-WR-CALNAME", "Family Birthdays"
         );
 
         String calendar = buildCalendar(Year.of(2025), Year.of(2030), params);
@@ -37,9 +37,11 @@ public class BirthdayCalendarGenerator {
                 "VERSION:2.0",
                 "PRODID:" + params.get("PRODID"),
                 "CALSCALE:GREGORIAN",
+                "TRANSP:TRANSPARENT",
+                "CATEGORIES:生日",
                 "X-APPLE-CALENDAR-COLOR:" + params.get("X-APPLE-CALENDAR-COLOR"),
                 "X-WR-CALNAME:" + params.get("X-WR-CALNAME"),
-                "X-APPLE-SPECIAL-DAY:BIRTHDAY",
+                "X-APPLE-SPECIAL-DAY:TRUE",
                 "METHOD:PUBLISH",
                 buildEvents(yearFrom, yearTo),
                 "END:VCALENDAR"
@@ -72,7 +74,7 @@ public class BirthdayCalendarGenerator {
         eventItems.add("UID:" + UUID.randomUUID());
         eventItems.add("DTSTAMP:" + Instant.now().toString());
         eventItems.add("DTSTART;VALUE=DATE:" + birthDate.getBirthday(year));
-        String summary = "SUMMARY:%s%s生日";
+        String summary = "SUMMARY:%s%s\uD83C\uDF82";
         eventItems.add(summary.formatted(birthDate.getName(), birthDate.isSolar() ? "" : "(" + birthDate.getBirthDateType().getName() + ")"));
 
 
