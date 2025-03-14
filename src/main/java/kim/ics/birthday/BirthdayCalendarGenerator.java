@@ -71,7 +71,7 @@ public class BirthdayCalendarGenerator {
         eventItems.add("UID:" + UUID.randomUUID());
         eventItems.add("DTSTAMP:" + Instant.now().toString());
         eventItems.add("DTSTART;VALUE=DATE:" + birthDate.getBirthday(year));
-        String summary = "SUMMARY:\uD83C\uDF82 %s生日%s";
+        String summary = "SUMMARY:%s\uD83C\uDF82%s";
         eventItems.add(summary.formatted(birthDate.getName(), birthDate.isSolar() ? "" : "(" + birthDate.getBirthDateType().getName() + ")"));
 
 
