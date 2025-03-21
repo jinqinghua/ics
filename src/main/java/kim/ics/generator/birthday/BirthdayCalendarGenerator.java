@@ -27,8 +27,12 @@ public class BirthdayCalendarGenerator {
     public static final String CVS_FILENAME_IN_RESOURCE_FOLDER = "family-birthday.csv";
     public static final Path ICS_PATH_WRITE_TO = Paths.get(PROJECT_HOME, "family-birthday.ics");
 
-    @SneakyThrows
     public static void main(String[] args) {
+        generate();
+    }
+
+    @SneakyThrows
+    public static void generate() {
         var vEvents = buildVEVents(Year.of(2025), Year.of(2030));
         MyCalendar myCalendar = new MyCalendar("Family Birthdays", "#FFB6C1", vEvents);
         myCalendar.add(new Transp(Transp.VALUE_TRANSPARENT));

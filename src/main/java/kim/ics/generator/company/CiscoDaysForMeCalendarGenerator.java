@@ -23,8 +23,12 @@ public class CiscoDaysForMeCalendarGenerator {
     public static final String CVS_FILENAME_IN_RESOURCE_FOLDER = "cisco-days-for-me.csv";
     public static final Path ICS_PATH_WRITE_TO = Paths.get(PROJECT_HOME, "cisco-days-for-me.ics");
 
-    @SneakyThrows
     public static void main(String[] args) {
+        generate();
+    }
+
+    @SneakyThrows
+    public static void generate() {
         var vEvents = buildVEVents();
         MyCalendar myCalendar = new MyCalendar("Cisco Days for me", "#0085CA", vEvents);
         myCalendar.add(new Transp(Transp.VALUE_OPAQUE)); // OPAQUE（事件不透明，影响忙碌时间）
