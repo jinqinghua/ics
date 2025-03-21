@@ -57,7 +57,7 @@ public class BirthdayCalendarGenerator {
             return null;
         }
         LocalDate birthday = birthDate.getBirthday(year);
-        String summary = "\uD83C\uDF82%s%d岁%s生日(%s)".formatted(birthDate.getName(), birthDate.getAge(year), birthDate.isSolar() ? "" : birthDate.getBirthDateType().getName(), birthDate.getChineseZodiac());
+        String summary = "%s%d岁%s生日(%s)\uD83C\uDF82".formatted(birthDate.getName(), birthDate.getAge(year), birthDate.isSolar() ? "" : birthDate.getBirthDateType().getName(), birthDate.getChineseZodiac());
         VEvent vEvent = new VEvent(birthday, birthday.plusDays(1), summary);
         vEvent.add(new RandomUidGenerator().generateUid());
         if (birthDate.isSolar()) {
