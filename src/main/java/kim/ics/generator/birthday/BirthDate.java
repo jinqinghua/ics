@@ -1,13 +1,15 @@
-package kim.ics.birthday;
+package kim.ics.generator.birthday;
 
 import com.nlf.calendar.Lunar;
 import com.nlf.calendar.Solar;
+import kim.ics.calenar.Consts;
+import kim.ics.util.CsvHeader;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.Year;
-import java.time.format.DateTimeFormatter;
 
 /**
  * birthDate 出生日期，只有一个
@@ -15,27 +17,36 @@ import java.time.format.DateTimeFormatter;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class BirthDate {
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
 
+    @CsvHeader(name = "姓名")
     private String name;
-    private BirthDateType birthDateType;
+
+    @CsvHeader(name = "历法")
+    private String birthDateTypeString;
+
+    @CsvHeader(name = "出生日期")
     private String birthDateString;
 
+    public BirthDateType getBirthDateType() {
+        return BirthDateType.from(birthDateTypeString);
+    }
+
     public boolean isSolar() {
-        return BirthDateType.SOLAR.equals(birthDateType);
+        return BirthDateType.SOLAR.equals(this.getBirthDateType());
     }
 
     public boolean isLunar() {
-        return BirthDateType.LUNAR.equals(birthDateType);
+        return BirthDateType.LUNAR.equals(this.getBirthDateType());
     }
 
     private LocalDate getBirthDate() {
-        return LocalDate.parse(birthDateString, DATE_FORMATTER);
+        return LocalDate.parse(birthDateString, Consts.DATE_FORMATTER);
     }
 
     public Solar getSolarBirthDate() {
-        return switch (birthDateType) {
+        return switch (this.getBirthDateType()) {
             case SOLAR -> {
                 LocalDate birthDate = getBirthDate();
                 yield new Solar(birthDate.getYear(), birthDate.getMonthValue(), birthDate.getDayOfMonth());
@@ -45,7 +56,7 @@ public class BirthDate {
     }
 
     public Lunar getLunarBirthDate() {
-        return switch (birthDateType) {
+        return switch (this.getBirthDateType()) {
             case SOLAR -> getSolarBirthDate().getLunar();
             case LUNAR -> {
                 LocalDate birthDate = getBirthDate();
@@ -54,21 +65,38 @@ public class BirthDate {
         };
     }
 
-    public String getBirthday(Year year) {
-        return switch (birthDateType) {
+    public int getAge(Year year) {
+        return switch (this.getBirthDateType()) {
+            case SOLAR -> {
+                var solarBirthDate = getSolarBirthDate();
+                yield year.getValue() - solarBirthDate.getYear();
+            }
+            case LUNAR -> {
+                var lunarBirthDate = getLunarBirthDate();
+                var solarBirthday = lunarBirthDate.getSolar();
+                yield year.getValue() - solarBirthday.getYear();
+            }
+        };
+    }
+
+    public LocalDate getBirthday(Year year) {
+        return switch (this.getBirthDateType()) {
             case SOLAR -> {
                 var solarBirthDate = getSolarBirthDate();
                 var solarBirthday = new Solar(year.getValue(), solarBirthDate.getMonth(), solarBirthDate.getDay());
-                yield DATE_FORMATTER.format(LocalDate.of(solarBirthday.getYear(), solarBirthDate.getMonth(), solarBirthDate.getDay()));
+                yield LocalDate.of(solarBirthday.getYear(), solarBirthDate.getMonth(), solarBirthDate.getDay());
 
             }
             case LUNAR -> {
                 var lunarBirthDate = getLunarBirthDate();
                 var lunarBirthday = new Lunar(year.getValue(), lunarBirthDate.getMonth(), lunarBirthDate.getDay());
                 var solarBirthday = lunarBirthday.getSolar();
-                yield DATE_FORMATTER.format(LocalDate.of(solarBirthday.getYear(), solarBirthday.getMonth(), solarBirthday.getDay()));
+                yield LocalDate.of(solarBirthday.getYear(), solarBirthday.getMonth(), solarBirthday.getDay());
             }
         };
     }
 
+    public String getChineseZodiac() {
+        return getLunarBirthDate().getYearShengXiao();
+    }
 }

@@ -1,4 +1,4 @@
-package kim.ics.birthday;
+package kim.ics.generator.birthday;
 
 import lombok.Getter;
 
