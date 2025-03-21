@@ -18,10 +18,6 @@ public class MyCalendar extends Calendar {
 
     private final String name;
 
-    public MyCalendar(@NonNull String name) {
-        this(name, null, Collections.emptyList());
-    }
-
     public MyCalendar(@NonNull String name, String xAppleCalendarColor) {
         this(name, xAppleCalendarColor, Collections.emptyList());
     }
