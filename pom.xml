@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.3</version>
+        <version>3.4.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -20,7 +20,7 @@
         <java.version>17</java.version>
 
         <commons-csv.version>1.14.0</commons-csv.version>
-        <lunar.version>1.7.2</lunar.version>
+        <tyme4j.version>1.2.0</tyme4j.version>
         <ical4j.version>4.1.1</ical4j.version>
 
         <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
@@ -40,8 +40,8 @@
         </dependency>
         <dependency>
             <groupId>cn.6tail</groupId>
-            <artifactId>lunar</artifactId>
-            <version>${lunar.version}</version>
+            <artifactId>tyme4j</artifactId>
+            <version>${tyme4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mnode.ical4j</groupId>

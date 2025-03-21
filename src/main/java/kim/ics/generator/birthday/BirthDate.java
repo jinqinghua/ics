@@ -1,7 +1,7 @@
 package kim.ics.generator.birthday;
 
-import com.nlf.calendar.Lunar;
-import com.nlf.calendar.Solar;
+import com.tyme.lunar.LunarDay;
+import com.tyme.solar.SolarDay;
 import kim.ics.calenar.Consts;
 import kim.ics.util.CsvHeader;
 import lombok.AllArgsConstructor;
@@ -45,22 +45,22 @@ public class BirthDate {
         return LocalDate.parse(birthDateString, Consts.DATE_FORMATTER);
     }
 
-    public Solar getSolarBirthDate() {
+    public SolarDay getSolarBirthDate() {
         return switch (this.getBirthDateType()) {
             case SOLAR -> {
                 LocalDate birthDate = getBirthDate();
-                yield new Solar(birthDate.getYear(), birthDate.getMonthValue(), birthDate.getDayOfMonth());
+                yield new SolarDay(birthDate.getYear(), birthDate.getMonthValue(), birthDate.getDayOfMonth());
             }
-            case LUNAR -> getLunarBirthDate().getSolar();
+            case LUNAR -> getLunarBirthDate().getSolarDay();
         };
     }
 
-    public Lunar getLunarBirthDate() {
+    public LunarDay getLunarBirthDate() {
         return switch (this.getBirthDateType()) {
-            case SOLAR -> getSolarBirthDate().getLunar();
+            case SOLAR -> getSolarBirthDate().getLunarDay();
             case LUNAR -> {
                 LocalDate birthDate = getBirthDate();
-                yield new Lunar(birthDate.getYear(), birthDate.getMonthValue(), birthDate.getDayOfMonth());
+                yield new LunarDay(birthDate.getYear(), birthDate.getMonthValue(), birthDate.getDayOfMonth());
             }
         };
     }
@@ -73,7 +73,7 @@ public class BirthDate {
             }
             case LUNAR -> {
                 var lunarBirthDate = getLunarBirthDate();
-                var solarBirthday = lunarBirthDate.getSolar();
+                var solarBirthday = lunarBirthDate.getSolarDay();
                 yield year.getValue() - solarBirthday.getYear();
             }
         };
@@ -83,20 +83,20 @@ public class BirthDate {
         return switch (this.getBirthDateType()) {
             case SOLAR -> {
                 var solarBirthDate = getSolarBirthDate();
-                var solarBirthday = new Solar(year.getValue(), solarBirthDate.getMonth(), solarBirthDate.getDay());
+                var solarBirthday = new SolarDay(year.getValue(), solarBirthDate.getMonth(), solarBirthDate.getDay());
                 yield LocalDate.of(solarBirthday.getYear(), solarBirthDate.getMonth(), solarBirthDate.getDay());
 
             }
             case LUNAR -> {
                 var lunarBirthDate = getLunarBirthDate();
-                var lunarBirthday = new Lunar(year.getValue(), lunarBirthDate.getMonth(), lunarBirthDate.getDay());
-                var solarBirthday = lunarBirthday.getSolar();
+                var lunarBirthday = new LunarDay(year.getValue(), lunarBirthDate.getMonth(), lunarBirthDate.getDay());
+                var solarBirthday = lunarBirthday.getSolarDay();
                 yield LocalDate.of(solarBirthday.getYear(), solarBirthday.getMonth(), solarBirthday.getDay());
             }
         };
     }
 
     public String getChineseZodiac() {
-        return getLunarBirthDate().getYearShengXiao();
+        return getLunarBirthDate().getYearSixtyCycle().getEarthBranch().getZodiac().getName();
     }
 }

@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.Collections;
 
 @Slf4j
-public class ExampleGenerator {
+public class ExampleCalendarGenerator {
 
     public static void main(String[] args) {
         MyCalendar cal = new MyCalendar("Family Birthdays", "#FF0000");
