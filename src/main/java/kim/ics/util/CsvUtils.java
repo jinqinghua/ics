@@ -18,6 +18,10 @@ import java.util.List;
 @Slf4j
 public class CsvUtils {
 
+    private CsvUtils() {
+        throw new UnsupportedOperationException();
+    }
+
     @SneakyThrows
     public static <T> List<T> listCsvRecord(@NonNull String cvsFilenameInResourceFolder, @NonNull Class<T> clazz) {
         List<T> recordsList = new ArrayList<>();

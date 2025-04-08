@@ -17,10 +17,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static kim.ics.calenar.Consts.PROJECT_HOME;
+import static kim.ics.calenar.Consts.GENERATED_HOME;
 
 public class LunarFestivalGenerator {
-    public static final Path ICS_PATH_WRITE_TO = Paths.get(PROJECT_HOME, "lunar-festival.ics");
+    public static final Path ICS_PATH_WRITE_TO = Paths.get(GENERATED_HOME, "festival-lunar.ics");
 
     public static void main(String[] args) {
         generate();
@@ -29,7 +29,7 @@ public class LunarFestivalGenerator {
     @SneakyThrows
     public static void generate() {
         var vEvents = buildVEVents();
-        MyCalendar myCalendar = new MyCalendar("Lunar Festival", "#0085CA", vEvents);
+        MyCalendar myCalendar = new MyCalendar("节日（农历）", "#007AFF", vEvents);
         myCalendar.add(new Transp(Transp.VALUE_TRANSPARENT));
         myCalendar.add(new XProperty("X-APPLE-SPECIAL-DAY", "TRUE"));
 

@@ -19,13 +19,13 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
-import static kim.ics.calenar.Consts.PROJECT_HOME;
+import static kim.ics.calenar.Consts.GENERATED_HOME;
 
 @Slf4j
 public class BirthdayCalendarGenerator {
 
     public static final String CVS_FILENAME_IN_RESOURCE_FOLDER = "family-birthday.csv";
-    public static final Path ICS_PATH_WRITE_TO = Paths.get(PROJECT_HOME, "family-birthday.ics");
+    public static final Path ICS_PATH_WRITE_TO = Paths.get(GENERATED_HOME, "family-birthday.ics");
 
     public static void main(String[] args) {
         generate();
@@ -34,7 +34,7 @@ public class BirthdayCalendarGenerator {
     @SneakyThrows
     public static void generate() {
         var vEvents = buildVEVents(Year.of(2025), Year.of(2030));
-        MyCalendar myCalendar = new MyCalendar("Family Birthdays", "#FFB6C1", vEvents);
+        MyCalendar myCalendar = new MyCalendar("生日", "#AF52DE", vEvents);
         myCalendar.add(new Transp(Transp.VALUE_TRANSPARENT));
         myCalendar.add(new XProperty("X-APPLE-SPECIAL-DAY", "TRUE"));
 
