@@ -38,7 +38,7 @@ public class LegalHolidayGenerator {
 
     private static VEvent buildVEvent(LegalHoliday legalHoliday) {
         LocalDate startDate = Tyme4jUtils.toLocalDate(legalHoliday.getDay());
-        VEvent vEvent = new VEvent(startDate, startDate.plusDays(1), legalHoliday.getName());
+        VEvent vEvent = new VEvent(startDate, startDate.plusDays(1), "%s(%s)".formatted(legalHoliday.getName(), legalHoliday.isWork() ? "班" : "休"));
         vEvent.add(new RandomUidGenerator().generateUid());
         return vEvent;
     }
