@@ -3,12 +3,12 @@ package kim.ics.generator.festival;
 import com.tyme.festival.LunarFestival;
 import com.tyme.solar.SolarDay;
 import kim.ics.calenar.MyCalendar;
+import kim.ics.util.Md5UidGenerator;
 import kim.ics.util.Tyme4jUtils;
 import lombok.SneakyThrows;
 import net.fortuna.ical4j.model.component.VEvent;
 import net.fortuna.ical4j.model.property.Transp;
 import net.fortuna.ical4j.model.property.XProperty;
-import net.fortuna.ical4j.util.RandomUidGenerator;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -39,7 +39,7 @@ public class LunarFestivalGenerator {
     private static VEvent buildVEvent(LunarFestival lunarFestival) {
         LocalDate startDate = Tyme4jUtils.toLocalDate(lunarFestival.getDay().getSolarDay());
         VEvent vEvent = new VEvent(startDate, startDate.plusDays(1), lunarFestival.getName());
-        vEvent.add(new RandomUidGenerator().generateUid());
+        vEvent.add(new Md5UidGenerator(startDate).generateUid());
         return vEvent;
     }
 

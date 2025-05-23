@@ -2,6 +2,7 @@ package kim.ics.generator.birthday;
 
 import kim.ics.calenar.MyCalendar;
 import kim.ics.util.CsvUtils;
+import kim.ics.util.Md5UidGenerator;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import net.fortuna.ical4j.model.component.VEvent;
@@ -9,7 +10,6 @@ import net.fortuna.ical4j.model.property.RRule;
 import net.fortuna.ical4j.model.property.Transp;
 import net.fortuna.ical4j.model.property.XProperty;
 import net.fortuna.ical4j.transform.recurrence.Frequency;
-import net.fortuna.ical4j.util.RandomUidGenerator;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -63,7 +63,7 @@ public class BirthdayCalendarGenerator {
         LocalDate birthday = birthDate.getBirthday(year);
         String summary = "%s%d岁%s生日(%s)\uD83C\uDF82".formatted(birthDate.getName(), birthDate.getAge(year), birthDate.isSolar() ? "" : birthDate.getBirthDateType().getName(), birthDate.getChineseZodiac());
         VEvent vEvent = new VEvent(birthday, birthday.plusDays(1), summary);
-        vEvent.add(new RandomUidGenerator().generateUid());
+        vEvent.add(new Md5UidGenerator(birthday).generateUid());
         if (birthDate.isSolar()) {
             vEvent.add(new RRule<>(Frequency.YEARLY));
         }

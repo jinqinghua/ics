@@ -1,13 +1,13 @@
 package kim.ics.generator.example;
 
 import kim.ics.calenar.MyCalendar;
+import kim.ics.util.Md5UidGenerator;
 import lombok.extern.slf4j.Slf4j;
 import net.fortuna.ical4j.model.component.VEvent;
 import net.fortuna.ical4j.model.property.Categories;
 import net.fortuna.ical4j.model.property.Method;
 import net.fortuna.ical4j.model.property.Transp;
 import net.fortuna.ical4j.model.property.XProperty;
-import net.fortuna.ical4j.util.RandomUidGenerator;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -22,8 +22,9 @@ public class ExampleCalendarGenerator {
         cal.add(new Categories("生日"));
         cal.add(new XProperty("X-APPLE-SPECIAL-DAY", "TRUE"));
 
-        VEvent vEvent = new VEvent(LocalDate.now(), "Christmas Day");
-        vEvent.add(new RandomUidGenerator().generateUid());
+        LocalDate today = LocalDate.now();
+        VEvent vEvent = new VEvent(today, "Christmas Day");
+        vEvent.add(new Md5UidGenerator(today).generateUid());
 
         cal.add(vEvent);
         cal.add(Collections.singletonList(vEvent));

@@ -37,10 +37,6 @@ public class BirthDate {
         return BirthDateType.SOLAR.equals(this.getBirthDateType());
     }
 
-    public boolean isLunar() {
-        return BirthDateType.LUNAR.equals(this.getBirthDateType());
-    }
-
     private LocalDate getBirthDate() {
         return LocalDate.parse(birthDateString, Consts.DATE_FORMATTER);
     }
@@ -96,7 +92,11 @@ public class BirthDate {
         };
     }
 
+    /**
+     * 生肖
+     */
     public String getChineseZodiac() {
         return getLunarBirthDate().getYearSixtyCycle().getEarthBranch().getZodiac().getName();
     }
+
 }

@@ -15,7 +15,7 @@ public class CiscoDay {
     @CsvHeader(name = "comment")
     private String comment;
 
-    public LocalDate getDay1() {
+    public LocalDate getLocalDate() {
         return Consts.DATE_FORMATTER.parse(day, LocalDate::from);
     }
 
