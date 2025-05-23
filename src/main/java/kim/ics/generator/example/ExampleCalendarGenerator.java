@@ -24,7 +24,7 @@ public class ExampleCalendarGenerator {
 
         LocalDate today = LocalDate.now();
         VEvent vEvent = new VEvent(today, "Christmas Day");
-        vEvent.add(new Md5UidGenerator(today).generateUid());
+        vEvent.add(new Md5UidGenerator("Family Birthdays", today).generateUid());
 
         cal.add(vEvent);
         cal.add(Collections.singletonList(vEvent));

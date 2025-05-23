@@ -32,7 +32,7 @@ public class CiscoDaysForMeCalendarGenerator {
     @SneakyThrows
     public static void generate() {
         var vEvents = buildVEVents();
-        MyCalendar myCalendar = new MyCalendar("Cisco Days for me", "#049FD9", vEvents);
+        MyCalendar myCalendar = new MyCalendar(CALENDAR_NAME, "#049FD9", vEvents);
         myCalendar.add(new Transp(Transp.VALUE_OPAQUE)); // OPAQUE（事件不透明，影响忙碌时间）
         myCalendar.add(new XProperty("X-APPLE-SPECIAL-DAY", "TRUE"));
 
@@ -42,7 +42,7 @@ public class CiscoDaysForMeCalendarGenerator {
     private static VEvent buildVEvent(CiscoDay ciscoDay) {
         LocalDate ciscoLocalDate = ciscoDay.getLocalDate();
         VEvent vEvent = new VEvent(ciscoLocalDate, ciscoLocalDate.plusDays(1), CALENDAR_NAME + ciscoDay.getComment());
-        vEvent.add(new Md5UidGenerator(ciscoLocalDate).generateUid());
+        vEvent.add(new Md5UidGenerator(CALENDAR_NAME, ciscoLocalDate).generateUid());
         return vEvent;
     }
 

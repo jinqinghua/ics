@@ -16,11 +16,14 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static kim.ics.calenar.Consts.GENERATED_HOME;
 
 public class SolarFestivalGenerator {
-    public static final Path ICS_PATH_WRITE_TO = Paths.get(GENERATED_HOME, "festival-solar.ics");
+    public static final String CALENDAR_NAME = "Festival Solar";
+    public static final String FILE_NAME = CALENDAR_NAME.toLowerCase(Locale.ROOT).replace(' ', '-');
+    public static final Path ICS_PATH_WRITE_TO = Paths.get(GENERATED_HOME, "%s.ics".formatted(FILE_NAME));
 
     public static void main(String[] args) {
         generate();
@@ -39,7 +42,7 @@ public class SolarFestivalGenerator {
     private static VEvent buildVEvent(SolarFestival solarFestival) {
         LocalDate startDate = Tyme4jUtils.toLocalDate(solarFestival.getDay());
         VEvent vEvent = new VEvent(startDate, startDate.plusDays(1), solarFestival.getName());
-        vEvent.add(new Md5UidGenerator(startDate).generateUid());
+        vEvent.add(new Md5UidGenerator(CALENDAR_NAME, startDate).generateUid());
         return vEvent;
     }
 

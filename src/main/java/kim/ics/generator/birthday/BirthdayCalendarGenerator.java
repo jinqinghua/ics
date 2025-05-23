@@ -18,14 +18,16 @@ import java.time.LocalDate;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static kim.ics.calenar.Consts.GENERATED_HOME;
 
 @Slf4j
 public class BirthdayCalendarGenerator {
-
-    public static final String CVS_FILENAME_IN_RESOURCE_FOLDER = "family-birthday.csv";
-    public static final Path ICS_PATH_WRITE_TO = Paths.get(GENERATED_HOME, "family-birthday.ics");
+    public static final String CALENDAR_NAME = "Family Birthday";
+    public static final String FILE_NAME = CALENDAR_NAME.toLowerCase(Locale.ROOT).replace(' ', '-'); // family-birthday
+    public static final String CVS_FILENAME_IN_RESOURCE_FOLDER = "%s.csv".formatted(FILE_NAME);
+    public static final Path ICS_PATH_WRITE_TO = Paths.get(GENERATED_HOME, "%s.ics".formatted(FILE_NAME));
 
     public static void main(String[] args) {
         generate();
@@ -63,7 +65,7 @@ public class BirthdayCalendarGenerator {
         LocalDate birthday = birthDate.getBirthday(year);
         String summary = "%s%d岁%s生日(%s)\uD83C\uDF82".formatted(birthDate.getName(), birthDate.getAge(year), birthDate.isSolar() ? "" : birthDate.getBirthDateType().getName(), birthDate.getChineseZodiac());
         VEvent vEvent = new VEvent(birthday, birthday.plusDays(1), summary);
-        vEvent.add(new Md5UidGenerator(birthday).generateUid());
+        vEvent.add(new Md5UidGenerator(CALENDAR_NAME, birthday).generateUid());
         if (birthDate.isSolar()) {
             vEvent.add(new RRule<>(Frequency.YEARLY));
         }
