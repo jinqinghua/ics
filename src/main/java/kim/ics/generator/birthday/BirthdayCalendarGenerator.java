@@ -7,6 +7,7 @@ import kim.ics.util.Md5UidGenerator;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import net.fortuna.ical4j.model.component.VEvent;
+import net.fortuna.ical4j.model.property.Categories;
 import net.fortuna.ical4j.model.property.Transp;
 import net.fortuna.ical4j.model.property.XProperty;
 import org.springframework.util.StringUtils;
@@ -66,7 +67,8 @@ public class BirthdayCalendarGenerator {
             LocalDate birthday = LocalDateUtils.fromSolarDay(birthDate.getSolarBirthdayByYear(year));
             String summary = SUMMERY.formatted(birthDate.getName(), birthDate.getSolarAgeByYear(year), "阳历", birthDate.getChineseZodiac());
             VEvent vevent = new VEvent(birthday, birthday.plusDays(1), summary);
-            vevent.add(new Md5UidGenerator(CALENDAR_NAME, birthday).generateUid());
+            vevent.add(new Md5UidGenerator(CALENDAR_NAME + "阳历", birthday).generateUid());
+            vevent.add(new Categories("BIRTHDAY"));
             // vevent.add(new RRule<>(Frequency.YEARLY))
             events.add(vevent);
         }
@@ -75,7 +77,8 @@ public class BirthdayCalendarGenerator {
             LocalDate birthday = LocalDateUtils.fromLunarDay(birthDate.getLunarBirthdayByYear(year));
             String summary = SUMMERY.formatted(birthDate.getName(), birthDate.getLunarAgeByYear(year), "阴历", birthDate.getChineseZodiac());
             VEvent vevent = new VEvent(birthday, birthday.plusDays(1), summary);
-            vevent.add(new Md5UidGenerator(CALENDAR_NAME, birthday).generateUid());
+            vevent.add(new Md5UidGenerator(CALENDAR_NAME + "阴历", birthday).generateUid());
+            vevent.add(new Categories("BIRTHDAY"));
             events.add(vevent);
         }
 
