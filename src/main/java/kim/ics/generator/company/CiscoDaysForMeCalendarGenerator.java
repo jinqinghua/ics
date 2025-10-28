@@ -25,7 +25,7 @@ public class CiscoDaysForMeCalendarGenerator {
     public static final String CVS_FILENAME_IN_RESOURCE_FOLDER = "%s.csv".formatted(FILE_NAME);
     public static final Path ICS_PATH_WRITE_TO = Paths.get(GENERATED_HOME, "%s.ics".formatted(FILE_NAME));
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         generate();
     }
 

@@ -96,7 +96,7 @@ public class BirthDate {
      * 生肖
      */
     public String getChineseZodiac() {
-        return getLunarBirthDate().getYearSixtyCycle().getEarthBranch().getZodiac().getName();
+        return getLunarBirthDate().getSixtyCycle().getEarthBranch().getZodiac().getName();
     }
 
 }

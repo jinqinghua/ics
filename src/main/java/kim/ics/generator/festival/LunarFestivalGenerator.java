@@ -25,7 +25,7 @@ public class LunarFestivalGenerator {
     public static final String FILE_NAME = CALENDAR_NAME.toLowerCase(Locale.ROOT).replace(' ', '-');
     public static final Path ICS_PATH_WRITE_TO = Paths.get(GENERATED_HOME, "%s.ics".formatted(FILE_NAME));
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         generate();
     }
 

@@ -17,7 +17,8 @@
     <name>webex-streaming-side</name>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>25</java.version>
+        <maven.version>3.6.3</maven.version>
 
         <commons-csv.version>1.14.1</commons-csv.version>
         <tyme4j.version>1.3.8</tyme4j.version>
@@ -85,6 +86,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <!-- Following section is temporary will remove in the feature, due to support IDEA+JDK25 not fully support lombok -->
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -125,7 +138,7 @@
                             <rules>
                                 <requireMavenVersion>
                                     <!-- https://docs.spring.io/spring-boot/maven-plugin/index.html -->
-                                    <version>3.6.3</version>
+                                    <version>${maven.version}</version>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>

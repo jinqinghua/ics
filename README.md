@@ -1,6 +1,8 @@
 # ics
 My ics
 
+This project is based on JDK25, please run jdk25 first in the terminal!
+
 
 https://github.com/6tail/lunar-java
 

@@ -7,15 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.temporal.Temporal;
 import java.util.UUID;
 
-public class Md5UidGenerator implements UidGenerator {
-
-    private final String calenderName;
-    private final Temporal temporal;
-
-    public Md5UidGenerator(final String calenderName, final Temporal temporal) {
-        this.calenderName = calenderName;
-        this.temporal = temporal;
-    }
+public record Md5UidGenerator(String calenderName, Temporal temporal) implements UidGenerator {
 
     @Override
     public Uid generateUid() {
