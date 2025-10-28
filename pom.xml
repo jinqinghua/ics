@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.0</version>
+        <version>3.5.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -19,11 +19,11 @@
     <properties>
         <java.version>17</java.version>
 
-        <commons-csv.version>1.14.0</commons-csv.version>
-        <tyme4j.version>1.3.2</tyme4j.version>
-        <ical4j.version>4.1.1</ical4j.version>
+        <commons-csv.version>1.14.1</commons-csv.version>
+        <tyme4j.version>1.3.8</tyme4j.version>
+        <ical4j.version>4.2.0</ical4j.version>
 
-        <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.19.1</versions-maven-plugin.version>
     </properties>
 
     <dependencies>

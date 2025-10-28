@@ -14,8 +14,8 @@ class Md5UidGeneratorTest {
     void generateUid() {
         LocalDate now = LocalDate.now();
 
-        Uid uid1 = new Md5UidGenerator(now).generateUid();
-        Uid uid2 = new Md5UidGenerator(now).generateUid();
+        Uid uid1 = new Md5UidGenerator("", now).generateUid();
+        Uid uid2 = new Md5UidGenerator("", now).generateUid();
 
         log.info("uid1: {}", uid1);
         log.info("uid2: {}", uid2);
