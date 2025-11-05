@@ -48,7 +48,7 @@ public class LegalHolidayGenerator {
 
     private static List<VEvent> buildVEVents() {
         List<VEvent> vEvents = new ArrayList<>();
-        Tyme4jUtils.listLegalHoliday(SolarDay.fromYmd(2025, 1, 1), 365)
+        Tyme4jUtils.listLegalHoliday(SolarDay.fromYmd(2025, 1, 1), 365 * 5)
                 .forEach(legalHoliday -> vEvents.add(buildVEvent(legalHoliday)));
         return vEvents;
     }
