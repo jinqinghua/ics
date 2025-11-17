@@ -1,7 +1,7 @@
 package kim.ics.generator.company;
 
+import com.opencsv.bean.CsvBindByName;
 import kim.ics.calenar.Consts;
-import kim.ics.util.CsvHeader;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -9,10 +9,10 @@ import java.time.LocalDate;
 @Data
 public class CiscoDay {
 
-    @CsvHeader(name = "day", pattern = "yyyyMMdd")
+    @CsvBindByName(column = "day")
     private String day;
 
-    @CsvHeader(name = "comment")
+    @CsvBindByName(column = "comment")
     private String comment;
 
     public LocalDate getLocalDate() {

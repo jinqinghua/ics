@@ -28,13 +28,9 @@ public class LegalHolidayGenerator {
     private LegalHolidayGenerator() {
     }
 
-    static void main() {
-        generate();
-    }
-
     @SneakyThrows
-    public static void generate() {
-        var vEvents = buildVEVents();
+    public static void generate(SolarDay solarDayFrom, int offsetDays) {
+        var vEvents = buildVEVents(solarDayFrom, offsetDays);
         MyCalendar myCalendar = new MyCalendar("法定节假", "#34C759", vEvents);
         myCalendar.add(new Transp(Transp.VALUE_TRANSPARENT));
         myCalendar.add(new XProperty("X-APPLE-SPECIAL-DAY", "TRUE"));
@@ -49,9 +45,9 @@ public class LegalHolidayGenerator {
         return vEvent;
     }
 
-    private static List<VEvent> buildVEVents() {
+    private static List<VEvent> buildVEVents(SolarDay solarDayFrom, int offsetDays) {
         List<VEvent> vEvents = new ArrayList<>();
-        Tyme4jUtils.listLegalHoliday(SolarDay.fromYmd(2025, 1, 1), 365 * 5)
+        Tyme4jUtils.listLegalHoliday(solarDayFrom, offsetDays)
                 .forEach(legalHoliday -> vEvents.add(buildVEvent(legalHoliday)));
         return vEvents;
     }

@@ -28,13 +28,9 @@ public class SolarFestivalGenerator {
     private SolarFestivalGenerator() {
     }
 
-    static void main() {
-        generate();
-    }
-
     @SneakyThrows
-    public static void generate() {
-        var vEvents = buildVEVents();
+    public static void generate(SolarDay solarDayFrom, int offsetDays) {
+        var vEvents = buildVEVents(solarDayFrom, offsetDays);
         MyCalendar myCalendar = new MyCalendar("节日（阳历）", "#FF9500", vEvents);
         myCalendar.add(new Transp(Transp.VALUE_TRANSPARENT));
         myCalendar.add(new XProperty("X-APPLE-SPECIAL-DAY", "TRUE"));
@@ -49,9 +45,9 @@ public class SolarFestivalGenerator {
         return vEvent;
     }
 
-    private static List<VEvent> buildVEVents() {
+    private static List<VEvent> buildVEVents(SolarDay solarDayFrom, int offsetDays) {
         List<VEvent> vEvents = new ArrayList<>();
-        Tyme4jUtils.listSolarFestival(SolarDay.fromYmd(2025, 1, 1), 1000)
+        Tyme4jUtils.listSolarFestival(solarDayFrom, offsetDays)
                 .forEach(solarFestival -> vEvents.add(buildVEvent(solarFestival)));
         return vEvents;
     }

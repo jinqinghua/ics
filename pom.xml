@@ -20,7 +20,7 @@
         <java.version>25</java.version>
         <maven.version>3.6.3</maven.version>
 
-        <commons-csv.version>1.14.1</commons-csv.version>
+        <opencsv.version>5.12.0</opencsv.version>
         <tyme4j.version>1.4.0</tyme4j.version>
         <ical4j.version>4.2.1</ical4j.version>
 
@@ -35,9 +35,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-csv</artifactId>
-            <version>${commons-csv.version}</version>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>${opencsv.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.6tail</groupId>

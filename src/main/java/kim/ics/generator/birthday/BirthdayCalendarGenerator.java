@@ -34,13 +34,9 @@ public class BirthdayCalendarGenerator {
     private BirthdayCalendarGenerator() {
     }
 
-    static void main() {
-        generate();
-    }
-
     @SneakyThrows
-    public static void generate() {
-        var vEvents = buildVEvents(Year.of(2025), Year.of(2045));
+    public static void generate(int fromYear, int toYear) {
+        var vEvents = buildVEvents(fromYear, toYear);
         MyCalendar myCalendar = new MyCalendar("生日", "#AF52DE", vEvents);
         myCalendar.add(new Transp(Transp.VALUE_TRANSPARENT));
         myCalendar.add(new XProperty("X-APPLE-SPECIAL-DAY", "TRUE"));
@@ -48,7 +44,7 @@ public class BirthdayCalendarGenerator {
         Files.writeString(ICS_PATH_WRITE_TO, myCalendar.toString());
     }
 
-    private static List<VEvent> buildVEvents(Year yearFrom, Year yearTo) {
+    private static List<VEvent> buildVEvents(int fromYear, int toYear) {
         List<VEvent> vEvents = new ArrayList<>();
         List<BirthDate> birthDateList = CsvUtils.listCsvRecord(CVS_FILENAME_IN_RESOURCE_FOLDER, BirthDate.class);
 
@@ -56,7 +52,7 @@ public class BirthdayCalendarGenerator {
             birthDate.verifyBirthDate();
             log.info("birthDate: {}", birthDate);
 
-            for (int year = yearFrom.getValue(); year <= yearTo.getValue(); year++) {
+            for (int year = fromYear; year <= toYear; year++) {
                 vEvents.addAll(buildVEvents(birthDate, Year.of(year)));
             }
         });

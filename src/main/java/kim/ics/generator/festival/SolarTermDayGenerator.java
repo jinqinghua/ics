@@ -28,13 +28,9 @@ public class SolarTermDayGenerator {
     private SolarTermDayGenerator() {
     }
 
-    static void main() {
-        generate();
-    }
-
     @SneakyThrows
-    public static void generate() {
-        var vEvents = buildVEVents();
+    public static void generate(SolarDay solarDayFrom, int offsetDays) {
+        var vEvents = buildVEVents(solarDayFrom, offsetDays);
         MyCalendar myCalendar = new MyCalendar("二十四节气", "#0085CA", vEvents);
         myCalendar.add(new Transp(Transp.VALUE_TRANSPARENT));
         myCalendar.add(new XProperty("X-APPLE-SPECIAL-DAY", "TRUE"));
@@ -49,9 +45,9 @@ public class SolarTermDayGenerator {
         return vEvent;
     }
 
-    private static List<VEvent> buildVEVents() {
+    private static List<VEvent> buildVEVents(SolarDay solarDayFrom, int offsetDays) {
         List<VEvent> vEvents = new ArrayList<>();
-        Tyme4jUtils.listSolarTermDay(SolarDay.fromYmd(2025, 1, 1), 1000)
+        Tyme4jUtils.listSolarTermDay(solarDayFrom, offsetDays)
                 .forEach(solarTermDay -> vEvents.add(buildVEvent(solarTermDay)));
         return vEvents;
     }

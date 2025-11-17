@@ -1,9 +1,9 @@
 package kim.ics.generator.birthday;
 
+import com.opencsv.bean.CsvBindByName;
 import com.tyme.lunar.LunarDay;
 import com.tyme.solar.SolarDay;
 import kim.ics.calenar.Consts;
-import kim.ics.util.CsvHeader;
 import kim.ics.util.LocalDateUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,13 +25,13 @@ import java.time.Year;
 @NoArgsConstructor
 public class BirthDate {
 
-    @CsvHeader(name = "姓名")
+    @CsvBindByName(column = "姓名")
     private String name;
 
-    @CsvHeader(name = "阳历出生日期")
+    @CsvBindByName(column = "阳历出生日期")
     private String inputSolarBirthDate;
 
-    @CsvHeader(name = "农历出生日期")
+    @CsvBindByName(column = "农历出生日期")
     private String inputLunarBirthDate;
 
     private SolarDay solarBirthDate;
