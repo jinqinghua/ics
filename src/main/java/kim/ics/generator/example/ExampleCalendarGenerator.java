@@ -15,7 +15,10 @@ import java.util.Collections;
 @Slf4j
 public class ExampleCalendarGenerator {
 
-    static void main(String[] args) {
+    private ExampleCalendarGenerator() {
+    }
+
+    static void main() {
         MyCalendar cal = new MyCalendar("Family Birthdays", "#FF0000");
         cal.add(new Transp(Transp.VALUE_TRANSPARENT)); // TRANSP:TRANSPARENT（事件透明度，不影响忙碌时间）
         cal.add(new Method(Method.VALUE_PUBLISH));

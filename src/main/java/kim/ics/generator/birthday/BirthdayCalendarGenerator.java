@@ -31,13 +31,16 @@ public class BirthdayCalendarGenerator {
     public static final Path ICS_PATH_WRITE_TO = Paths.get(GENERATED_HOME, "%s.ics".formatted(FILE_NAME));
     public static final String SUMMERY = "%s%d岁%s生日(%s)\uD83C\uDF82";
 
-    static void main(String[] args) {
+    private BirthdayCalendarGenerator() {
+    }
+
+    static void main() {
         generate();
     }
 
     @SneakyThrows
     public static void generate() {
-        var vEvents = buildVEVents(Year.of(2025), Year.of(2045));
+        var vEvents = buildVEvents(Year.of(2025), Year.of(2045));
         MyCalendar myCalendar = new MyCalendar("生日", "#AF52DE", vEvents);
         myCalendar.add(new Transp(Transp.VALUE_TRANSPARENT));
         myCalendar.add(new XProperty("X-APPLE-SPECIAL-DAY", "TRUE"));
@@ -45,7 +48,7 @@ public class BirthdayCalendarGenerator {
         Files.writeString(ICS_PATH_WRITE_TO, myCalendar.toString());
     }
 
-    private static List<VEvent> buildVEVents(Year yearFrom, Year yearTo) {
+    private static List<VEvent> buildVEvents(Year yearFrom, Year yearTo) {
         List<VEvent> vEvents = new ArrayList<>();
         List<BirthDate> birthDateList = CsvUtils.listCsvRecord(CVS_FILENAME_IN_RESOURCE_FOLDER, BirthDate.class);
 

@@ -22,7 +22,7 @@
 
         <commons-csv.version>1.14.1</commons-csv.version>
         <tyme4j.version>1.4.0</tyme4j.version>
-        <ical4j.version>4.2.0</ical4j.version>
+        <ical4j.version>4.2.1</ical4j.version>
 
         <versions-maven-plugin.version>2.19.1</versions-maven-plugin.version>
     </properties>

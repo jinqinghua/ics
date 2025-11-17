@@ -9,7 +9,10 @@ import kim.ics.generator.festival.SolarTermDayGenerator;
 
 public class AllCalendarGenerator {
 
-    static void main(String[] args) {
+    private AllCalendarGenerator() {
+    }
+
+    static void main() {
         CiscoDaysForMeCalendarGenerator.generate();
         BirthdayCalendarGenerator.generate();
 

@@ -7,7 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Tyme4jShowCase {
 
-    static void main(String[] args) {
+    private Tyme4jShowCase() {
+    }
+
+    static void main() {
         SolarDay firstSolarDay = SolarDay.fromYmd(2025, 1, 1);
         int offset = 365;
 
