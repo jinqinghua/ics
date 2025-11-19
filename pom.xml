@@ -14,7 +14,7 @@
     <artifactId>ics</artifactId>
     <version>1.0.0</version>
 
-    <name>webex-streaming-side</name>
+    <name>kim-github</name>
 
     <properties>
         <java.version>25</java.version>
