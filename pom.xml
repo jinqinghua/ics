@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.7</version>
+        <version>4.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -14,7 +14,7 @@
     <artifactId>ics</artifactId>
     <version>1.0.0</version>
 
-    <name>webex-streaming-side</name>
+    <name>kim-github::ics</name>
 
     <properties>
         <java.version>25</java.version>
