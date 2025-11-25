@@ -24,7 +24,9 @@
         <tyme4j.version>1.4.0</tyme4j.version>
         <ical4j.version>4.2.1</ical4j.version>
 
-        <versions-maven-plugin.version>2.19.1</versions-maven-plugin.version>
+        <commons-lang3.version>3.20.0</commons-lang3.version>
+
+        <versions-maven-plugin.version>2.20.1</versions-maven-plugin.version>
     </properties>
 
     <dependencies>
