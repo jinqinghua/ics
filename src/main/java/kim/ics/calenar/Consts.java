@@ -9,7 +9,7 @@ public class Consts {
     public static final String PROJECT_HOME = USER_HOME + "/git/kim-github/ics";
     public static final String GENERATED_HOME = PROJECT_HOME + "/generated";
 
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
     private Consts() {
         throw new UnsupportedOperationException();

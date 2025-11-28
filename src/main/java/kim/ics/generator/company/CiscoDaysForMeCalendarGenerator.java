@@ -44,7 +44,7 @@ public class CiscoDaysForMeCalendarGenerator {
 
     private static VEvent buildVEvent(CiscoDay ciscoDay) {
         LocalDate ciscoLocalDate = ciscoDay.getLocalDate();
-        VEvent vEvent = new VEvent(ciscoLocalDate, ciscoLocalDate.plusDays(1), CALENDAR_NAME + ciscoDay.getComment());
+        VEvent vEvent = new VEvent(ciscoLocalDate, ciscoLocalDate.plusDays(1), ciscoDay.getComment());
         vEvent.add(new Md5UidGenerator(CALENDAR_NAME, ciscoLocalDate).generateUid());
         return vEvent;
     }
