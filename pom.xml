@@ -21,12 +21,12 @@
         <maven.version>3.6.3</maven.version>
 
         <opencsv.version>5.12.0</opencsv.version>
-        <tyme4j.version>1.4.0</tyme4j.version>
-        <ical4j.version>4.2.1</ical4j.version>
+        <tyme4j.version>1.4.3</tyme4j.version>
+        <ical4j.version>4.2.3</ical4j.version>
 
         <commons-lang3.version>3.20.0</commons-lang3.version>
 
-        <versions-maven-plugin.version>2.20.1</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.21.0</versions-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -147,15 +147,12 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--alias mvnvddu='mvn versions:display-dependency-updates -DprocessDependencyManagement=false -Dmaven.version.rules=file:///$HOME/git/rules.xml'-->
+            <!--alias mvnvdpu='mvn versions:display-plugin-updates -DprocessDependencyManagement=false -Dmaven.version.rules=file:///$HOME/git/rules.xml'-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>${versions-maven-plugin.version}</version>
-                <configuration>
-                    <!-- mvn versions:display-dependency-updates -DprocessDependencyManagement=false -->
-                    <!-- mvn versions:display-plugin-updates -DprocessDependencyManagement=false -->
-                    <rulesUri>file:///${user.home}/git/rules.xml</rulesUri>
-                </configuration>
             </plugin>
         </plugins>
     </build>
