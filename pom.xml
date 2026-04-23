@@ -21,10 +21,11 @@
         <maven.version>3.6.3</maven.version>
 
         <opencsv.version>5.12.0</opencsv.version>
-        <tyme4j.version>1.4.8</tyme4j.version>
+        <tyme4j.version>1.4.9</tyme4j.version>
         <ical4j.version>4.2.5</ical4j.version>
 
         <commons-lang3.version>3.20.0</commons-lang3.version>
+        <lombok.version>1.18.46</lombok.version>
 
         <versions-maven-plugin.version>2.21.0</versions-maven-plugin.version>
     </properties>
