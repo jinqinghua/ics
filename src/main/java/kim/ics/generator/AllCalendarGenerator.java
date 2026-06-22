@@ -20,7 +20,7 @@ public class AllCalendarGenerator {
     static void main() {
         SolarDay fromSolarDay = SolarDay.fromYmd(2025, 1, 1);
         LocalDate fromLocalDate = LocalDateUtils.fromSolarDay(fromSolarDay);
-        LocalDate toLocalDate = fromLocalDate.plusYears(5);
+        LocalDate toLocalDate = fromLocalDate.plusYears(4);
 
         int offsetDays = (int) ChronoUnit.DAYS.between(fromLocalDate, toLocalDate);
 
